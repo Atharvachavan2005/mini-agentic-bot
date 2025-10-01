@@ -1,0 +1,52 @@
+version: '3.8'
+
+services:
+  # Streamlit Frontend Service
+  frontend:
+    build: .
+    container_name: mini-agentic-bot-frontend
+    volumes:
+      - ./data:/app/data
+    env_file:
+      - .env
+    ports:
+      - "8501:8501"
+    command: >
+      sh -c "python setup_database.py && 
+             streamlit run frontend/chat_ui.py 
+             --server.port 8501 
+             --server.address 0.0.0.0 
+             --server.headless true 
+             --server.enableCORS false 
+             --server.enableXsrfProtection false"
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8501/_stcore/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  # FastAPI Backend Service (Optional)
+  backend:
+    build: .
+    container_name: mini-agentic-bot-backend
+    volumes:
+      - ./data:/app/data
+    env_file:
+      - .env
+    ports:
+      - "8000:8000"
+    command: >
+      sh -c "python setup_database.py && 
+             uvicorn backend.api:app 
+             --host 0.0.0.0 
+             --port 8000 
+             --reload"
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/docs"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+    profiles:
+      - api
