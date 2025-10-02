@@ -31,16 +31,15 @@ CREATE TABLE IF NOT EXISTS users (
 );
 """)
 
-# Insert an expanded list of sample users
+# Insert an expanded list of sample users with Indian names
 users_data = [
-    ('Alice', 'alice@example.com', 'Backend'),      # ID 1
-    ('Bob', 'bob@example.com', 'Frontend'),       # ID 2
-    ('Charlie', 'charlie@example.com', 'Backend'),      # ID 3
-    ('Diana', 'diana@example.com', 'QA'),           # ID 4
-    ('Ethan', 'ethan@example.com', 'Frontend'),     # ID 5
-    ('Fiona', 'fiona@example.com', 'Design'),       # ID 6
-    ('George', 'george@example.com', 'Design'),     # ID 7
-    ('Hannah', 'hannah@example.com', 'QA')          # ID 8
+    ('Priya Sharma', 'priya.sharma@example.com', 'Backend'),      # ID 1
+    ('Rohan Mehra', 'rohan.mehra@example.com', 'Frontend'),       # ID 2
+    ('Anjali Desai', 'anjali.desai@example.com', 'Backend'),      # ID 3
+    ('Vikram Singh', 'vikram.singh@example.com', 'QA'),           # ID 4
+    ('Arjun Verma', 'arjun.verma@example.com', 'Mobile'),        # ID 5
+    ('Meera Reddy', 'meera.reddy@example.com', 'Frontend'),     # ID 6
+    ('Sameer Khan', 'sameer.khan@example.com', 'DevOps')         # ID 7
 ]
 
 cursor_users.executemany("INSERT OR IGNORE INTO users (name, email, team) VALUES (?, ?, ?)", users_data)
@@ -66,20 +65,18 @@ CREATE TABLE IF NOT EXISTS tasks (
 );
 """)
 
-# Insert an expanded list of sample tasks, assigning to the new user IDs
+# Insert a variety of tasks
 tasks_data = [
-    ('Setup CI/CD pipeline', 'Integrate GitHub Actions for automated testing', 'Done', 1),
-    ('Design homepage UI', 'Create mockups in Figma for the new homepage', 'In Progress', 6),
-    ('Fix login authentication bug', 'Users are unable to log in with valid credentials', 'In Progress', 3),
-    ('Write API documentation', 'Document all endpoints for the v2 API', 'Done', 1),
-    ('Develop splash screen', 'Implement the new splash screen animation', 'To Do', 5),
-    ('Create user personas', 'Define key user archetypes for product development', 'Done', 7),
-    ('Perform regression testing', 'Run full regression suite before the v2.1 release', 'To Do', 4),
-    ('Refactor database connection module', 'Update the module to use connection pooling', 'To Do', 3),
-    ('Test new checkout flow', 'End-to-end testing of the new payment and checkout process', 'In Progress', 8),
-    ('Build reusable button component', 'Create a dynamic button component in React', 'Done', 2),
-    ('Design mobile app icon', 'Create a new icon for the iOS and Android app', 'To Do', 6),
-    ('Migrate user data to new schema', 'Write and test the migration script for user data', 'Blocked', None) # Unassigned task
+    ('Deploy authentication service', 'Update the auth microservice to v1.2 on production', 'Done', 1),
+    ('Build new settings page UI', 'Use the new design system components in React', 'In Progress', 2),
+    ('Fix payment gateway bug', 'Investigate why some UPI transactions are failing', 'Blocked', 3),
+    ('Write E2E tests for registration', 'Use Cypress to test the full user sign-up flow', 'To Do', 4),
+    ('Implement push notifications for Android', 'Integrate Firebase Cloud Messaging', 'In Progress', 5),
+    ('Optimize landing page load time', 'Reduce the Largest Contentful Paint (LCP) to under 2s', 'To Do', 6),
+    ('Configure Kubernetes cluster monitoring', 'Set up Prometheus and Grafana for the new cluster', 'Done', 7),
+    ('Setup staging environment database', 'Create a read replica of the production DB', 'To Do', 1),
+    ('Release iOS app version 2.5 to TestFlight', 'Prepare the build and submit for review', 'To Do', 5),
+    ('Audit third-party API usage', 'Check for unused or deprecated API calls', 'To Do', None) # Unassigned task
 ]
 
 cursor_tasks.executemany("INSERT INTO tasks (title, description, status, assigned_to) VALUES (?, ?, ?, ?)", tasks_data)
