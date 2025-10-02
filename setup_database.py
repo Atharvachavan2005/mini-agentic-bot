@@ -65,7 +65,7 @@ CREATE TABLE IF NOT EXISTS tasks (
 );
 """)
 
-# Insert a variety of tasks
+
 tasks_data = [
     ('Deploy authentication service', 'Update the auth microservice to v1.2 on production', 'Done', 1),
     ('Build new settings page UI', 'Use the new design system components in React', 'In Progress', 2),
