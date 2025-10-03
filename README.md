@@ -4,6 +4,8 @@ This project is a technical assignment for the Gen AI Internship at Mentox. It's
 
 The agent features a crucial **human-in-the-loop (HITL)** confirmation step for all data modification operations (`Create`, `Update`, `Delete`), ensuring data integrity and user oversight.
 
+## 🎥 Agentic Bot Demo  
+Check out the demo video of my Agentic Bot here: [Watch Demo](https://drive.google.com/file/d/1URIaavymGp9LZWvTRgT7ww9vDySudo37/view?usp=drive_link)
 
 
 ---
